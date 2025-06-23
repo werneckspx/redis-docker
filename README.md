@@ -81,6 +81,15 @@ volumes:
 
 ## 5. Comandos Utilizados para Execução e Testes
 
+Os seguintes comandos do Docker e Docker Compose foram utilizados e compreendidos durante a execução do projeto:
+
+* `docker compose up -d`: sobe o serviço Redis em segundo plano (modo "detached").
+* `docker ps`: lista todos os containers em execução no momento.
+* `docker logs <container>`: exibe os logs do container (opcional para depuração).
+* `docker exec -it <container> <comando>`: executa um comando interativo dentro do container. Usamos para acessar o Redis via `redis-cli`.
+* `docker compose down -v`: derruba os containers e remove os volumes associados (limpa completamente o ambiente).
+
+
 ```bash
 cd redis-docker
 # Inicia o container em background
@@ -124,4 +133,3 @@ docker compose down -v
 * Docker Compose reference: [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
 * Redis persistence: [https://redis.io/topics/persistence](https://redis.io/topics/persistence)
 * Kinsta tutorial: [https://kinsta.com/pt/blog/executar-redis-no-docker/]
-
