@@ -69,8 +69,8 @@ services:
     restart: unless-stopped    # 7. Política de reinício automática
     command:                  # 8. Comando customizado para habilitar AOF
       - redis-server
-      - --appendonly
-      - yes
+      - --appendonly        # ativa o modo AOF (Append Only File), que grava todas as operações de escrita em disco
+      - yes                # garante persistência mesmo após queda ou reinício do container
 
 volumes:
   redis-data:                 # 9. Declaração do volume nomeado
