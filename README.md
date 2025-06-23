@@ -107,18 +107,7 @@ docker compose down -v
 
 ## 6. Prints do Serviço Funcionando
 
-1. **`docker ps`** mostrando o container `redis01` ativo e a porta 6379 mapeada.
-2. **Saída do `redis-cli ping`** retornando `PONG`.
-3. **Comandos `SET` e `GET`** confirmando o armazenamento em memória (`Joao`).
-4. **Conteúdo do volume** (`ls -lh /data` ou `ls -lh /data/appendonlydir`) exibindo arquivos de persistência.
-
-*(Insira aqui as capturas de tela correspondentes.)*
-
----
-
-## 6. Prints do Serviço Funcionando
-
-
+![Print do Redis em funcionamento](redis.jpeg)
 
 ---
 
