@@ -1,0 +1,15 @@
+version: '3.8'          # versão da sintaxe do Compose
+services:               # define cada serviço (container) da aplicação
+  redis:                # nome do serviço
+    image: redis:latest     # qual imagem Docker usar
+    container_name: redis01   # nome amigável para o container
+    ports:
+      - "6379:6379"           # mapeia porta host:container
+    volumes:
+      - redis-data:/data      # volume para persistência de dados
+    restart: unless-stopped   # política de reinício
+    command: ["redis-server", "--appendonly", "yes"]
+  
+volumes:                # declaração de volumes compartilhados
+  redis-data:           # armazena dados do Redis entre reinícios
+    driver: local
