@@ -108,6 +108,13 @@ docker exec -it redis01 redis-cli GET usuario:100    # deve retornar "Joao"
 # Verifica diretório de dados para persistência
 docker exec -it redis01 ls -lh /data/appendonlydir
 
+# Teste de Hashes (registro de objeto tipo "bike")
+docker exec -it redis01 redis-cli HSET bike:2 model Deimos brand Ergonom type "Enduro bikes" price 4972
+
+# Consultas ao Hash
+docker exec -it redis01 redis-cli HGETALL bike:2
+docker exec -it redis01 redis-cli HGET bike:2 price
+
 # Para parar e remover tudo (containers, rede e volumes)
 docker compose down -v
 ```
