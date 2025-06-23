@@ -22,6 +22,8 @@ Sua principal vantagem é a baixa latência e alta taxa de operações por segun
 
 O Docker isola os ambientes para aplicativos e serviços que são executados dentro de contêineres. O isolamento significa que é possível empacotar, criar e enviar imagens do Redis que funcionam independentemente do sistema operacional do host, o que facilita o desenvolvimento e a execução de aplicativos Redis dentro do Docker. Além da facilidade de uso, essa abordagem também oferece segurança, flexoflexibilidade e confiabilidade.
 
+Foi utilizado o AOF (Append Only File), que é uma persistência que registra todas as operações de gravação recebidas pelo servidor. Essas operações podem ser reproduzidas novamente na inicialização do servidor, reconstruindo o conjunto de dados original. Os comandos são registrados usando o mesmo formato que o próprio protocolo Redis.
+
 ---
 
 ## 3. Instruções de Instalação do Docker e Docker Compose (Ubuntu 22.04 / WSL2)
