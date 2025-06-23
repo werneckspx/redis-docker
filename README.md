@@ -125,6 +125,7 @@ docker compose down
 
 ![Print do Redis em funcionamento](redis.jpeg)
 ![Print do Redis Hash em funcionamento](redis_hash.jpeg)
+![Print do Redis AOF em funcionamento](redis_AOF.png)
 
 ---
 
