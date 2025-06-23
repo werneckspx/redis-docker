@@ -117,6 +117,9 @@ docker exec -it redis01 redis-cli HSET bike:2 model Deimos brand Ergonom type "E
 docker exec -it redis01 redis-cli HGETALL bike:2
 docker exec -it redis01 redis-cli HGET bike:2 price
 
+# Log
+docker-compose logs -f redis
+
 # Para parar e remover tudo (containers, rede e volumes)
 docker compose down 
 ```
@@ -128,6 +131,7 @@ docker compose down
 ![Print do Redis em funcionamento](redis.jpeg)
 ![Print do Redis Hash em funcionamento](redis_hash.jpeg)
 ![Print do Redis AOF em funcionamento](redis_AOF.png)
+![Print do Redis LOGS em funcionamento](logs.jpeg)
 
 ---
 
