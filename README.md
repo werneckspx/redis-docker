@@ -7,14 +7,13 @@
 
 ## 2. Explicação
 
-O **Redis** é um banco de dados em memória, do tipo chave-valor, altamente performático. É comumente usado para:
+Redis (REmote DIctionary Server) é um armazenamento de chave/valor NoSQL de código aberto, em memória, utilizado principalmente como cache de aplicação ou banco de dados de resposta rápida. É comumente usado para:
 
-* **Cache** de dados e sessões em aplicações web;
-* **Filas** simples e sistemas de Pub/Sub;
-* **Contadores** e métricas em tempo real;
-* **Dados temporários**, com suporte a expiração automática.
+Análise em tempo real: pode processar dados com latência inferior a um milissegundo, sendo ideal para análises em tempo real, campanhas de publicidade on-line e processos orientados por inteligência artificial.
 
-Sua principal vantagem é a baixa latência e alta taxa de operações por segundo, sendo ideal em cenários que não suportam latências elevadas.
+Aplicações baseadas em localização: simplifica o desenvolvimento de aplicações e serviços baseados em localização, fornecendo indexação, conjuntos e operações geoespaciais.
+
+Armazenamento em cache para bancos de dados: lida com grandes quantidades de dados em tempo real, fazendo uso de seus recursos de armazenamento de dados in-memory para ajudar na compatibilidade com construções de banco de dados altamente responsivas. O armazenamento em cache permite menos acessos ao banco de dados, o que ajuda a reduzir o volume de tráfego e as instâncias necessárias.
 
 O Docker isola os ambientes para aplicativos e serviços que são executados dentro de contêineres. O isolamento significa que é possível empacotar, criar e enviar imagens do Redis que funcionam independentemente do sistema operacional do host, o que facilita o desenvolvimento e a execução de aplicativos Redis dentro do Docker. Além da facilidade de uso, essa abordagem também oferece segurança, flexoflexibilidade e confiabilidade. Para execução do projeto, foi compreendido os seguintes comandos:
 
@@ -131,3 +130,4 @@ docker compose down
 * Docker Compose reference: [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
 * Redis persistence: [https://redis.io/topics/persistence](https://redis.io/topics/persistence)
 * Kinsta tutorial: [https://kinsta.com/pt/blog/executar-redis-no-docker/]
+* IBM: [https://www.ibm.com/br-pt/think/topics/redis]
