@@ -1,15 +1,11 @@
 # Documentação do Projeto – Docker + Redis
 
-## 1. Nome dos Integrantes e Serviço Sorteado
-
-* **Integrantes**:
+## 1. Integrantes
 
   * Felipe Werneck
   * João Francisco
 
----
-
-## 2. Explicação Breve e Clara sobre o Serviço
+## 2. Explicação
 
 O **Redis** é um banco de dados em memória, do tipo chave-valor, altamente performático. É comumente usado para:
 
@@ -20,15 +16,19 @@ O **Redis** é um banco de dados em memória, do tipo chave-valor, altamente per
 
 Sua principal vantagem é a baixa latência e alta taxa de operações por segundo, sendo ideal em cenários que não suportam latências elevadas.
 
-O Docker isola os ambientes para aplicativos e serviços que são executados dentro de contêineres. O isolamento significa que é possível empacotar, criar e enviar imagens do Redis que funcionam independentemente do sistema operacional do host, o que facilita o desenvolvimento e a execução de aplicativos Redis dentro do Docker. Além da facilidade de uso, essa abordagem também oferece segurança, flexoflexibilidade e confiabilidade.
+O Docker isola os ambientes para aplicativos e serviços que são executados dentro de contêineres. O isolamento significa que é possível empacotar, criar e enviar imagens do Redis que funcionam independentemente do sistema operacional do host, o que facilita o desenvolvimento e a execução de aplicativos Redis dentro do Docker. Além da facilidade de uso, essa abordagem também oferece segurança, flexoflexibilidade e confiabilidade. Para execução do projeto, foi compreendido os seguintes comandos:
 
-Foi utilizado o AOF (Append Only File), que é uma persistência que registra todas as operações de gravação recebidas pelo servidor. Essas operações podem ser reproduzidas novamente na inicialização do servidor, reconstruindo o conjunto de dados original. Os comandos são registrados usando o mesmo formato que o próprio protocolo Redis.
+* `docker compose up -d`: sobe o serviço Redis em segundo plano (modo "detached").
+* `docker ps`: lista todos os containers em execução no momento.
+* `docker logs <container>`: exibe os logs do container (para depuração).
+* `docker exec -it <container> <comando>`: executa um comando interativo dentro do container. Usamos para acessar o Redis via `redis-cli`.
+* `docker compose down -v`: derruba os containers e remove os volumes associados (limpa completamente o ambiente).
 
----
+Além disso, foi utilizado o AOF (Append Only File), que é uma persistência que registra todas as operações de gravação recebidas pelo servidor. Essas operações podem ser reproduzidas novamente na inicialização do servidor, reconstruindo o conjunto de dados original. Os comandos são registrados usando o mesmo formato que o próprio protocolo Redis.
 
 ## 3. Instruções de Instalação do Docker e Docker Compose (Ubuntu 22.04 / WSL2)
 
-Neste ambiente WSL2, o Docker foi instalado via **snap** e a extensão WSL2 foi configurada manualmente. Confira o histórico de comandos utilizados:
+Neste ambiente WSL2, o Docker foi instalado via **snap** e a extensão WSL2 foi configurada manualmente. Segue o histórico de comandos utilizados:
 
 ```bash
 # Atualizar e verificar WSL2
@@ -52,9 +52,7 @@ docker compose version     # ex.: Docker Compose version v2.X.X
 docker run hello-world
 ```
 
----
-
-## 4. Arquivo `docker-compose.yml` Comentado
+## 4. Arquivo `docker-compose.yml` 
 
 Crie um diretório `redis-docker/` e, dentro, o arquivo `docker-compose.yml`:
 
@@ -79,18 +77,9 @@ volumes:
     driver: local             #    driver local padrão
 ```
 
----
-
 ## 5. Comandos Utilizados para Execução e Testes
 
 Os seguintes comandos do Docker e Docker Compose foram utilizados e compreendidos durante a execução do projeto:
-
-* `docker compose up -d`: sobe o serviço Redis em segundo plano (modo "detached").
-* `docker ps`: lista todos os containers em execução no momento.
-* `docker logs <container>`: exibe os logs do container (opcional para depuração).
-* `docker exec -it <container> <comando>`: executa um comando interativo dentro do container. Usamos para acessar o Redis via `redis-cli`.
-* `docker compose down -v`: derruba os containers e remove os volumes associados (limpa completamente o ambiente).
-
 
 ```bash
 cd redis-docker
@@ -103,14 +92,14 @@ docker ps
 # Teste de conexão via CLI
 docker exec -it redis01 redis-cli ping    # deve retornar PONG
 
-# Teste de SET e GET (sem aspas extras)
+# Teste de SET e GET
 docker exec -it redis01 redis-cli SET usuario:100 Joao
 docker exec -it redis01 redis-cli GET usuario:100    # deve retornar "Joao"
 
 # Verifica diretório de dados para persistência
 docker exec -it redis01 ls -lh /data/appendonlydir
 
-# Teste de Hashes (registro de objeto tipo "bike")
+# Teste de Hashes
 docker exec -it redis01 redis-cli HSET bike:2 model Deimos brand Ergonom type "Enduro bikes" price 4972
 
 # Consultas ao Hash
@@ -120,11 +109,9 @@ docker exec -it redis01 redis-cli HGET bike:2 price
 # Log
 docker-compose logs -f redis
 
-# Para parar e remover tudo (containers, rede e volumes)
+# Para parar e remover
 docker compose down 
 ```
-
----
 
 ## 6. Prints do Serviço Funcionando
 
@@ -133,15 +120,11 @@ docker compose down
 ![Print do Redis AOF em funcionamento](redis_AOF.png)
 ![Print do Redis LOGS em funcionamento](logs.jpeg)
 
----
-
 ## 7. Dificuldades Encontradas e Soluções
 
 * **Nome do arquivo Compose**: inicialmente uso de underscore (`docker_compose.yml`) em vez de hífen; corrigido para `docker-compose.yml`.
 * **Criação de AOF**: Redis gravava dentro de `appendonlydir`; confirmei via `CONFIG GET dir` e `CONFIG GET appendfilename`, e forcei `BGREWRITEAOF` para gerar o arquivo.
 * **Compreender como funciona**: Dúvidas em relação ao funcionamento do redis e docker, retiradas por meio de pesquisas.
-
----
 
 ## 8. Referências Utilizadas
 
