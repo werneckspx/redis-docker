@@ -56,7 +56,6 @@ docker run hello-world
 Crie um diretório `redis-docker/` e, dentro, o arquivo `docker-compose.yml`:
 
 ```yaml
-version: '3.8'                # 1. Versão da sintaxe do Compose
 services:
   redis:                      # 2. Definição do serviço "redis"
     image: redis:latest       # 3. Imagem Docker (tag latest)
