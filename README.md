@@ -121,7 +121,7 @@ docker compose down
 ## 7. Dificuldades Encontradas e Soluções
 
 * **Nome do arquivo Compose**: inicialmente uso de underscore (`docker_compose.yml`) em vez de hífen; corrigido para `docker-compose.yml`.
-* **Criação de AOF**: O Redis gravava os dados no diretório `appendonlydir`, conforme identificado via `CONFIG GET dir` e `CONFIG GET appendfilename`. Para forçar a criação (ou reescrita) do arquivo de log AOF, foi utilizado o comando `BGREWRITEAOF`, assegurando a persistência dos dados mesmo após reinicialização.
+* **Criação de AOF**: O Redis gravava os dados no diretório `appendonlydir`, conforme identificado via `CONFIG GET dir` e `CONFIG GET appendfilename`. Para forçar a criação (ou reescrita) do arquivo de log AOF, foi utilizado o comando `BGREWRITEAOF`, assegurando a persistência dos dados mesmo após reinicialização. Além disso, durante os estudos, observamos que este erro foi causado devido a confusão nos testes, depois de realizar os testes em outro computador percebemos que não havia necessidade da utilização deste comando, porém ele é um comando muito útil.
 * **Compreender como funciona**: Dúvidas em relação ao funcionamento do redis e docker, retiradas por meio de pesquisas.
 
 ## 8. Referências Utilizadas
