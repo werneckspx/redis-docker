@@ -121,7 +121,7 @@ docker compose down
 ## 7. Dificuldades Encontradas e Soluções
 
 * **Nome do arquivo Compose**: inicialmente uso de underscore (`docker_compose.yml`) em vez de hífen; corrigido para `docker-compose.yml`.
-* **Criação de AOF**: Redis gravava dentro de `appendonlydir`; confirmei via `CONFIG GET dir` e `CONFIG GET appendfilename`, e forcei `BGREWRITEAOF` para gerar o arquivo.
+* **Criação de AOF**: O Redis gravava os dados no diretório `appendonlydir`, conforme identificado via `CONFIG GET dir` e `CONFIG GET appendfilename`. Para forçar a criação (ou reescrita) do arquivo de log AOF, foi utilizado o comando `BGREWRITEAOF`, assegurando a persistência dos dados mesmo após reinicialização.
 * **Compreender como funciona**: Dúvidas em relação ao funcionamento do redis e docker, retiradas por meio de pesquisas.
 
 ## 8. Referências Utilizadas
@@ -130,3 +130,4 @@ docker compose down
 * Redis persistence: [https://redis.io/topics/persistence](https://redis.io/topics/persistence)
 * Kinsta tutorial: [https://kinsta.com/pt/blog/executar-redis-no-docker/]
 * IBM: [https://www.ibm.com/br-pt/think/topics/redis]
+
